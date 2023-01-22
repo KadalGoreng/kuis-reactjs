@@ -3,6 +3,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { Container, Alert, Row, Col } from "react-bootstrap";
 import Loader from "../components/Loader";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [questions, setQuestions] = useState();
@@ -13,6 +14,7 @@ function Home() {
   const [checkedFalse, setCheckedFalse] = useState(false);
   const [timer, setTimer] = useState(500);
 
+  const navigate = useNavigate();
   const user = localStorage.getItem("username");
 
   useEffect(() => {
@@ -60,6 +62,10 @@ function Home() {
 
   const minute = Math.floor(timer / 60);
   const second = timer % 60;
+
+  if (!user) {
+    navigate("/");
+  }
 
   if (!questions)
     return (

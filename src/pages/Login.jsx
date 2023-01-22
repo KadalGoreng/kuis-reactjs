@@ -38,10 +38,9 @@ function Login() {
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    handleValidation();
-    localStorage.setItem("username", email);
 
     if (handleValidation()) {
+      localStorage.setItem("username", email);
       navigate("/home");
     }
   };
